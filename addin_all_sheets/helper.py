@@ -172,7 +172,7 @@ def getTotalSheetRows(wb, sheet):
              (str(row[3]) != "None" and str(row[3]) != "" and str(row[3]) != "\n")):
             
             lastrow = idx + 1
-            print("last row: " + str(lastrow))
+            #print("last row: " + str(lastrow))
   
     return lastrow
         
@@ -377,12 +377,37 @@ def ReadDDTSheet(workbook_name, worksheet_name):
     # getting value from each cell in row
     
     for row in worksheet_data.iter_rows():
+        
             row_data = list()
             for cell in row:
                 row_data.append(str(cell.value))
             output_data.append(row_data) 
     
-    return output_data
+    clean_output = removeEmptyRows(output_data)
+    
+    return clean_output
+
+
+
+#Function that removes rows with no data from list
+def removeEmptyRows(input_list):
+    cleanList = list() 
+    for idx, row in enumerate(input_list):   #skip first 5 rows, they don't contain actual data
+        
+        row_data = ""
+             
+        if ((str(row[1]) == "None") and
+            (str(row[2]) == "None") and
+            (str(row[3]) == "None") and
+            (str(row[4]) == "None")):
+            
+            pass
+        
+        else:
+            #print("clean row " + str(idx + 1) + " : " + str(row))
+            cleanList.append(row)
+            
+    return cleanList
 
 #Function that removes output CSV files from location
 def removeCSVFiles(wb):

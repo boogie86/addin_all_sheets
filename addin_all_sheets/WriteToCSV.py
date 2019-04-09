@@ -74,73 +74,68 @@ def WriteCashflowsToCSV(wb):
              
             row_data = ""
              
-            if ((str(row[1]) != "None") and
-            (str(row[2]) != "None") and
-            (str(row[3]) != "None") and
-            (str(row[4]) != "None")):
+            #retrieving value of each field...
              
-                #retrieving value of each field...
-                 
-                CashFlowUnitId         = addin_all_sheets.helper.handleNulls(row[1])
-                CashFlowDate           = addin_all_sheets.helper.handleNulls(row[2])[:10] + ']'
-                FinancialFactStatus    = addin_all_sheets.helper.handleNulls(row[3])
-                FinancialFactType      = addin_all_sheets.helper.handleNulls(row[4])
-                FinancialFactType      = addin_all_sheets.helper.handleNulls(row[5])
-                InvestmentComponent    = addin_all_sheets.helper.handleNulls(row[6])
-                ServicePeriod          = addin_all_sheets.helper.handleNulls(row[7])
-                CashFlowPurpose        = addin_all_sheets.helper.handleNulls(row[8])
-                FinancialFactID        = addin_all_sheets.helper.handleNulls(row[9])
-                Currency               = addin_all_sheets.helper.handleNulls(row[10])
-                LRCLICIndicator        = addin_all_sheets.helper.handleNulls(row[11])
-                RateIndicator          = addin_all_sheets.helper.handleNulls(row[12])
-                PVAmountT0             = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[13]), 15)).replace('.',',') if str(row[13]) !="None" else "]"
-                PVAmountT1             = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[14]), 15)).replace('.',',') if str(row[14]) !="None" else "]"
-                InterestAccretion      = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[15]), 15)).replace('.',',') if str(row[15]) !="None" else "]"
-                CashFlowAmount         = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[16]), 15)).replace('.',',') if str(row[16]) !="None" else "]"
-                DiscountFlag           = addin_all_sheets.helper.handleNulls(row[17])
-                AggregatedFlag         = addin_all_sheets.helper.handleNulls(row[18])
-                IRSMIndicator          = addin_all_sheets.helper.handleNulls(row[19])
-                DiscountingFrequency   = addin_all_sheets.helper.handleNulls(row[20])
-                ProcessingIndicator    = addin_all_sheets.helper.handleNulls(row[21])
-                MovementStep           = strMovementStep + "]"
-                                
-                #constructing output row...
-                row_data = (strfixedPreHeader 
-                + CashFlowUnitId      
-                + CashFlowDate        
-                + FinancialFactStatus 
-                + FinancialFactType   
-                + FinancialFactType   
-                + InvestmentComponent 
-                + ServicePeriod       
-                + CashFlowPurpose     
-                + FinancialFactID     
-                + Currency            
-                + LRCLICIndicator     
-                + RateIndicator       
-                + PVAmountT0          
-                + PVAmountT1          
-                + InterestAccretion   
-                + CashFlowAmount      
-                + DiscountFlag        
-                + AggregatedFlag      
-                + IRSMIndicator       
-                + DiscountingFrequency
-                + ProcessingIndicator 
-                + MovementStep) 
-                
-                #print("row data: " + row_data)
-                
-                #writing row to the Cashflows CSV file
-                resultFile.write(row_data)
-                resultFile.write('\n')
+            CashFlowUnitId         = addin_all_sheets.helper.handleNulls(row[1])
+            CashFlowDate           = addin_all_sheets.helper.handleNulls(row[2])[:10] + ']'
+            FinancialFactStatus    = addin_all_sheets.helper.handleNulls(row[3])
+            FinancialFactType      = addin_all_sheets.helper.handleNulls(row[4])
+            FinancialFactType      = addin_all_sheets.helper.handleNulls(row[5])
+            InvestmentComponent    = addin_all_sheets.helper.handleNulls(row[6])
+            ServicePeriod          = addin_all_sheets.helper.handleNulls(row[7])
+            CashFlowPurpose        = addin_all_sheets.helper.handleNulls(row[8])
+            FinancialFactID        = addin_all_sheets.helper.handleNulls(row[9])
+            Currency               = addin_all_sheets.helper.handleNulls(row[10])
+            LRCLICIndicator        = addin_all_sheets.helper.handleNulls(row[11])
+            RateIndicator          = addin_all_sheets.helper.handleNulls(row[12])
+            PVAmountT0             = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[13]), 15)).replace('.',',') if str(row[13]) !="None" else "]"
+            PVAmountT1             = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[14]), 15)).replace('.',',') if str(row[14]) !="None" else "]"
+            InterestAccretion      = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[15]), 15)).replace('.',',') if str(row[15]) !="None" else "]"
+            CashFlowAmount         = addin_all_sheets.helper.handleNulls(addin_all_sheets.helper.truncate(float(row[16]), 15)).replace('.',',') if str(row[16]) !="None" else "]"
+            DiscountFlag           = addin_all_sheets.helper.handleNulls(row[17])
+            AggregatedFlag         = addin_all_sheets.helper.handleNulls(row[18])
+            IRSMIndicator          = addin_all_sheets.helper.handleNulls(row[19])
+            DiscountingFrequency   = addin_all_sheets.helper.handleNulls(row[20])
+            ProcessingIndicator    = addin_all_sheets.helper.handleNulls(row[21])
+            MovementStep           = strMovementStep + "]"
+                            
+            #constructing output row...
+            row_data = (strfixedPreHeader 
+            + CashFlowUnitId      
+            + CashFlowDate        
+            + FinancialFactStatus 
+            + FinancialFactType   
+            + FinancialFactType   
+            + InvestmentComponent 
+            + ServicePeriod       
+            + CashFlowPurpose     
+            + FinancialFactID     
+            + Currency            
+            + LRCLICIndicator     
+            + RateIndicator       
+            + PVAmountT0          
+            + PVAmountT1          
+            + InterestAccretion   
+            + CashFlowAmount      
+            + DiscountFlag        
+            + AggregatedFlag      
+            + IRSMIndicator       
+            + DiscountingFrequency
+            + ProcessingIndicator 
+            + MovementStep) 
+            
+            #print("row data: " + row_data)
+            
+            #writing row to the Cashflows CSV file
+            resultFile.write(row_data)
+            resultFile.write('\n')
              
         #print("wrote rows to Cash Flow file...")    
         resultFile.close()
              
         #print("Closed Cash Flow file...")
         isOk = True
-         
+     
     else:      #if validation goes boom...
         #print("Cash Flow validation returned False...")
         addin_all_sheets.helper.RaisePopup('Cash Flows CSV file not generated! Please try again after correcting the errors!')

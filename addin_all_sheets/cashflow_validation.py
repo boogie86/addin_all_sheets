@@ -36,260 +36,256 @@ def ValidateCashflows(wb, display_popups):
         #skipping first 5 rows, as they don't contain actual data
         for idx, val in enumerate(excel_data[5:]):
                 
-            if ((str(val[1]) != "None") and
-            (str(val[2]) != "None") and
-            (str(val[3]) != "None") and
-            (str(val[4]) != "None")):
             
 #####################Begin Validations################################################
-            
-                strCashFlowUnitID = str(val[1])  
-                
-                #message = ""
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCashFlowUnitID, "Cash Flow Unit ID", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                     
-                #message = ""
-                message = addin_all_sheets.helper.hasSpecialChars(strsheetName, strCashFlowUnitID, "Cash Flow Unit ID", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-    
-                strCashFlowDate = str(val[2])
-                
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCashFlowDate, "Cash Flow Date", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                        
-                                    
-                message = addin_all_sheets.helper.ValidDateFormat(strsheetName, strCashFlowDate, "Cash Flow Date", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-                    
-                message = addin_all_sheets.helper.checkDate1BiggerOrEqualDate2(strsheetName, strCashFlowDate, strMeasurementDate, 'Cash Flow Date', 'Measurement Date', '%Y-%m-%d %H:%M:%S', idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-    
-    ######################################################################################
-    
-                strFinancialFactStatus = str(val[3])
-    
-                
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strFinancialFactStatus, "Financial Fact Status", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                
-                            
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strFinancialFactStatus, "Cash_Flow_Status_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-    
-    ######################################################################################
-                    
-                strFinancialFactType = str(val[4])
-                
-                
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strFinancialFactType, "Financial Fact Type", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-    #                
-    
-                message = addin_all_sheets.helper.containsForrbidenValue(strsheetName, strFinancialFactType, "Guarantee", "Financial Fact Type", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strFinancialFactType, "Financial_Fact_Type_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-    
-                strInvestmentComponent = str(val[6])
-    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strInvestmentComponent, "Investment_Component_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                        
-    ######################################################################################
-    
-                strServicePeriod = str(val[7])
-    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strServicePeriod, "Service_Period_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                        
-    ######################################################################################
-                        
-                strCashFlowPurpose = str(val[8])
-                
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCashFlowPurpose, "Cash Flow Purpose", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-                    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strCashFlowPurpose, "Cash_Flow_Purpose_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-    
-                strCurrency = str(val[10])
-    
-                
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCurrency, "Currency", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-                    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strCurrency, "Currency_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-    
-                strLRCLICIndicator = str(val[11])
-                strDiscountFlag = str(val[15])
-    
-    
-                if strLRCLICIndicator != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
-                    pass
-                else:
-                    val[11] = ""
-                    
-                    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strLRCLICIndicator, "LRC_LIC_Indicator_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-    
-                strRateIndicator = str(val[12])
-                strDiscountFlag = str(val[15])
-    
-    
-                if strRateIndicator != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
-                    pass
-                else:
-                    val[12] = ""
-                    
-                    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strRateIndicator, "Rate_Indicator_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-    
-                strPVAmountT0 = str(val[13])
-                strDiscountFlag = str(val[15])
-    
-                if strPVAmountT0 != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
-                    pass
-                else:
-                    val[13] = ""
-                    
-    ######################################################################################
-    
-                strPVAmountT1 = str(val[14])
-                strDiscountFlag = str(val[15])
-    
-                if strPVAmountT1 != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
-                    pass
-                else:
-                    val[14] = ""
-                    
-    ######################################################################################
-    
-                strIRSMIndicator = str(val[19])
-                
-                message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strIRSMIndicator, "IR/SM Indicator", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-                    
-                message = addin_all_sheets.helper.valueExistsInList(strsheetName, strIRSMIndicator, "IR_SM_Indicator_LoV", idx, display_popups)
-                if message == "":
-                    pass
-                else:
-                    addin_all_sheets.helper.logValidationError(wb, message)
-                    isValidData = False
-                    
-    ######################################################################################
-                        
-                if strMovementStep == "" or strMovementStep == "None":
-                    isValidData = False
-                    message = "Movement Step must be filled (General Information tab)! Check your data."
-                    addin_all_sheets.helper.RaisePopup(message) 
-                else:
-                    pass
-                    
-                    
-    #             message = addin_all_sheets.helper.valueExistsInList(strsheetName, strMovementStep, "Movement_Step_Desc_LoV", idx, display_popups)
-    #                 pass
-    #             else:
-    #                 isValidData = False
-    
-                print("Cash Flows - End validation process..." + str(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())))
-
-            return isValidData
         
-    ######################End of Validations###############################################
+            strCashFlowUnitID = str(val[1])  
+            
+            #message = ""
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCashFlowUnitID, "Cash Flow Unit ID", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                 
+            #message = ""
+            message = addin_all_sheets.helper.hasSpecialChars(strsheetName, strCashFlowUnitID, "Cash Flow Unit ID", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+
+            strCashFlowDate = str(val[2])
+            
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCashFlowDate, "Cash Flow Date", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                    
+                                
+            message = addin_all_sheets.helper.ValidDateFormat(strsheetName, strCashFlowDate, "Cash Flow Date", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+                
+            message = addin_all_sheets.helper.checkDate1BiggerOrEqualDate2(strsheetName, strCashFlowDate, strMeasurementDate, 'Cash Flow Date', 'Measurement Date', '%Y-%m-%d %H:%M:%S', idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+
+######################################################################################
+
+            strFinancialFactStatus = str(val[3])
+
+            
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strFinancialFactStatus, "Financial Fact Status", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+            
+                        
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strFinancialFactStatus, "Cash_Flow_Status_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+
+######################################################################################
+                
+            strFinancialFactType = str(val[4])
+            
+            
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strFinancialFactType, "Financial Fact Type", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+#                
+
+            message = addin_all_sheets.helper.containsForrbidenValue(strsheetName, strFinancialFactType, "Guarantee", "Financial Fact Type", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strFinancialFactType, "Financial_Fact_Type_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+
+            strInvestmentComponent = str(val[6])
+
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strInvestmentComponent, "Investment_Component_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                    
+######################################################################################
+
+            strServicePeriod = str(val[7])
+
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strServicePeriod, "Service_Period_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                    
+######################################################################################
+                    
+            strCashFlowPurpose = str(val[8])
+            
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCashFlowPurpose, "Cash Flow Purpose", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+                
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strCashFlowPurpose, "Cash_Flow_Purpose_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+
+            strCurrency = str(val[10])
+
+            
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strCurrency, "Currency", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+                
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strCurrency, "Currency_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+
+            strLRCLICIndicator = str(val[11])
+            strDiscountFlag = str(val[15])
+
+
+            if strLRCLICIndicator != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
+                pass
+            else:
+                val[11] = ""
+                
+                
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strLRCLICIndicator, "LRC_LIC_Indicator_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+
+            strRateIndicator = str(val[12])
+            strDiscountFlag = str(val[15])
+
+
+            if strRateIndicator != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
+                pass
+            else:
+                val[12] = ""
+                
+                
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strRateIndicator, "Rate_Indicator_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+
+            strPVAmountT0 = str(val[13])
+            strDiscountFlag = str(val[15])
+
+            if strPVAmountT0 != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
+                pass
+            else:
+                val[13] = ""
+                
+######################################################################################
+
+            strPVAmountT1 = str(val[14])
+            strDiscountFlag = str(val[15])
+
+            if strPVAmountT1 != "" and (strDiscountFlag == "Y" or strDiscountFlag == "" or strDiscountFlag == "None"):
+                pass
+            else:
+                val[14] = ""
+                
+######################################################################################
+
+            strIRSMIndicator = str(val[19])
+            
+            message = addin_all_sheets.helper.MandatoryColumnIsFilled(strsheetName, strIRSMIndicator, "IR/SM Indicator", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+                
+            message = addin_all_sheets.helper.valueExistsInList(strsheetName, strIRSMIndicator, "IR_SM_Indicator_LoV", idx, display_popups)
+            if message == "":
+                pass
+            else:
+                addin_all_sheets.helper.logValidationError(wb, message)
+                isValidData = False
+                
+######################################################################################
+                    
+            if strMovementStep == "" or strMovementStep == "None":
+                isValidData = False
+                message = "Movement Step must be filled (General Information tab)! Check your data."
+                addin_all_sheets.helper.RaisePopup(message) 
+            else:
+                pass
+                
+                
+#             message = addin_all_sheets.helper.valueExistsInList(strsheetName, strMovementStep, "Movement_Step_Desc_LoV", idx, display_popups)
+#                 pass
+#             else:
+#                 isValidData = False
+
+            print("Cash Flows - End validation process..." + str(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())))
+
+        return isValidData
+    
+######################End of Validations###############################################
