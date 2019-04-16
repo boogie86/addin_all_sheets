@@ -25,7 +25,7 @@ SECRET_KEY = '59t6hilld0crv1(fhkjshble40xm-9tz*l6!dyf*(5*r%htj&z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['addin-all-sheets.azurewebsites.net']
 
 
 # Application definition
